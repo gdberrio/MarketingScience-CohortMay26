@@ -12,13 +12,14 @@ Use:
 ```text
 week-3/session-5/session_05_meridian.ipynb
 skills/course-examples/meridian-model/SKILL.md
-~/1-Projects/MarketingSciencePlugin/skills/meridian-setup/SKILL.md
+artifacts/meridian-model-spec-template.md
 ```
 
 ## Prompt
 
 ```text
-Prepare a Meridian Model Spec for the workshop or synthetic multi-geo dataset.
+Using skills/course-examples/meridian-model/SKILL.md as the workflow guide,
+prepare a Meridian Model Spec for the workshop or synthetic multi-geo dataset.
 Map KPI, time, geo, population, media, media_spend, and controls. Check that
 media and spend channels are paired in the same order, controls are external or
 pre-treatment, array dimensions are correct, and no NaN or inf values remain.
@@ -36,4 +37,3 @@ Then answer:
 2. Which dimension names must be preserved exactly?
 3. Which columns would block fitting because of NaN or role ambiguity?
 4. What should the agent stop and ask before sampling?
-

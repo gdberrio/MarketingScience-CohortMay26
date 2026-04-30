@@ -12,6 +12,9 @@ Use:
 ```text
 week-2/session-3/session_03_ols_mmm.ipynb
 week-2/session-4/session_04_bayesian_mmm.ipynb
+skills/course-examples/mmm-variable-mapping/SKILL.md
+references/agentic-mmm-demo-guide.md
+references/bayesian-vs-frequentist-mmm-guide.md
 ```
 
 ## Prompt
@@ -46,4 +49,3 @@ Then answer:
 2. Which diagnostic mattered most for rejecting a model?
 3. Did the final recommendation overstate what the model can identify?
 4. What failure from this lab should become an eval case?
-

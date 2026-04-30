@@ -57,7 +57,6 @@ cohort-May26/
 ├── AGENTS.md
 ├── course-map.md
 ├── agentic-workflow-layer.md
-├── REVIEW_AGENTIC_COURSE_UPDATE.md
 ├── artifacts/
 ├── capstone/
 ├── data/
@@ -69,16 +68,41 @@ cohort-May26/
 └── week-1/ ... week-4/
 ```
 
-## Working With The Skill Pack
+## Environment Setup
 
-The companion skill pack lives locally at:
+Use the lightweight default install for setup, Week 1, EDA, OLS MMM,
+attribution, and most agentic labs:
 
-```text
-~/1-Projects/MarketingSciencePlugin
+```bash
+uv sync
 ```
 
-Use it as a teaching artifact and optional workflow dependency. The core
-progression is:
+Install heavier stacks only when the relevant week needs them:
+
+```bash
+uv sync --extra bayesian   # Week 2 Bayesian MMM
+uv sync --extra meridian   # Week 3 Google Meridian
+uv sync --extra geolift    # Week 4 GeoLift/R bridge
+uv sync --extra apps       # Optional Shiny demo
+uv sync --all-extras       # Instructor/full environment
+```
+
+Students using `pip` can start with `requirements.txt`, then add the matching
+optional file such as `requirements-bayesian.txt` or `requirements-meridian.txt`.
+
+## Working With Course Skills
+
+The course is self-contained. Student-facing skills live in
+`skills/course-examples/`:
+
+- `mmm-variable-classification`
+- `mmm-variable-mapping`
+- `meridian-model`
+- `marketing-lift-design`
+- `calibration-strategy`
+
+Use them as teaching artifacts and workflow dependencies. The core progression
+is:
 
 1. Inspect a course-specific skill.
 2. Use a workflow skill on course data.
@@ -101,5 +125,6 @@ Useful commands:
 ```bash
 uv sync
 uv run jupyter nbconvert --to notebook --execute pre-course/00_smoke_test.ipynb
+uv run --extra bayesian jupyter nbconvert --to notebook --execute week-2/offline/notebook_03_pymc_basics.ipynb
 uv run jupyter nbconvert --to notebook --execute week-1/session-1/session_01_measurement_landscape.ipynb
 ```

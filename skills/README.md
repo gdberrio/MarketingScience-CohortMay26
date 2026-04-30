@@ -3,14 +3,8 @@
 The May cohort uses skills as reusable workflow assets. This folder documents
 how students should inspect, use, adapt, and evaluate skills during the course.
 
-The companion skill pack lives at:
-
-```text
-~/1-Projects/MarketingSciencePlugin
-```
-
-Do not vendor the full pack into this course folder by default. Link to it,
-inspect it, and copy only small teaching examples or templates when needed.
+The May student repo is self-contained. Course examples live under
+`skills/course-examples/` and are intentionally small enough to inspect in class.
 
 ## Skill Learning Progression
 
@@ -19,7 +13,10 @@ inspect it, and copy only small teaching examples or templates when needed.
 Start with course-specific examples:
 
 - `skills/course-examples/mmm-variable-classification/SKILL.md`
+- `skills/course-examples/mmm-variable-mapping/SKILL.md`
 - `skills/course-examples/meridian-model/SKILL.md`
+- `skills/course-examples/marketing-lift-design/SKILL.md`
+- `skills/course-examples/calibration-strategy/SKILL.md`
 
 Questions:
 
@@ -30,12 +27,10 @@ Questions:
 
 ### 2. Use
 
-Run an existing skill from the MarketingSciencePlugin pack:
+Run or adapt one of the course example skills:
 
-- `data-onboarding`
 - `mmm-variable-mapping`
-- `mmm-eda`
-- `meridian-setup`
+- `meridian-model`
 - `marketing-lift-design`
 - `calibration-strategy`
 
@@ -122,4 +117,3 @@ Name the artifact or final response shape.
 
 - Common mistake to avoid.
 ```
-

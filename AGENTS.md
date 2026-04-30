@@ -28,7 +28,6 @@ Build the May cohort from the ported March 2026 bootcamp:
 | `utils/` | Ported helper package for EDA, MMM, and geo experiments |
 | `data/` | Ported course datasets and demo scripts |
 | `capstone/` | May capstone plus archived March capstone templates |
-| `~/1-Projects/MarketingSciencePlugin` | Companion marketing science skill pack |
 
 ## Editing Guidance
 
@@ -36,8 +35,8 @@ Build the May cohort from the ported March 2026 bootcamp:
 - Prefer reusable templates and labs over long abstract essays.
 - When adapting March material, preserve the original measurement logic and add
   agentic replay/validation sections around it.
-- Do not duplicate the full skill pack in this repo unless explicitly asked.
-  Link to it or copy only small teaching templates.
+- Keep student-facing skill exercises self-contained under
+  `skills/course-examples/`.
 - Use ASCII unless a source file already uses non-ASCII.
 
 ## Agentic Curriculum Principles
@@ -69,4 +68,6 @@ For copied or modified notebooks, validate from this repo:
 
 ```bash
 uv run jupyter nbconvert --to notebook --execute pre-course/00_smoke_test.ipynb
+uv run --extra bayesian jupyter nbconvert --to notebook --execute week-2/offline/notebook_03_pymc_basics.ipynb
+uv run --extra meridian jupyter nbconvert --to notebook --execute week-3/offline/notebook_04_meridian_setup.ipynb
 ```

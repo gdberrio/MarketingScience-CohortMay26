@@ -35,7 +35,7 @@ This map organizes the May agentic cohort. The ported March notebooks remain the
 - `week-1/session-1/session_01_measurement_landscape.ipynb`
 - `week-1/session-2/session_02_data_prep_eda.ipynb`
 - `week-1/offline/notebook_01_eda.ipynb`
-- `../LightingSessions/Context-rot-Claude-Code-Marketing-Analytics/session-plan.md`
+- `references/context-engineering-guide.md`
 
 ### New May Layer
 
@@ -59,8 +59,9 @@ This map organizes the May agentic cohort. The ported March notebooks remain the
 - `week-2/session-3/session_03_ols_mmm.ipynb`
 - `week-2/offline/notebook_03_pymc_basics.ipynb`
 - `week-2/session-4/session_04_bayesian_mmm.ipynb`
-- `../LightingSessions/MMM-30mins-Claude-Code/session-plan.md`
-- `../LightingSessions/Bayesian-v-Frequencist-MMM/session-plan/session-plan.md`
+- `references/agentic-mmm-demo-guide.md`
+- `references/bayesian-vs-frequentist-mmm-guide.md`
+- `skills/course-examples/mmm-variable-mapping/SKILL.md`
 
 ### New May Layer
 
@@ -85,9 +86,7 @@ This map organizes the May agentic cohort. The ported March notebooks remain the
 - `week-3/offline/notebook_06_meridian_post_modeling.ipynb`
 - `week-3/session-6/session_06_attribution_byod.ipynb`
 - `skills/course-examples/meridian-model/SKILL.md`
-- `~/1-Projects/MarketingSciencePlugin/skills/meridian-setup/SKILL.md`
-- `~/1-Projects/MarketingSciencePlugin/skills/meridian-fit/SKILL.md`
-- `~/1-Projects/MarketingSciencePlugin/skills/meridian-diagnostics/SKILL.md`
+- `artifacts/meridian-model-spec-template.md`
 
 ### New May Layer
 
@@ -114,9 +113,16 @@ This map organizes the May agentic cohort. The ported March notebooks remain the
 - `week-4/offline/notebook_06_power_analysis.ipynb`
 - `week-4/offline/reading_06_calibrating_mmm.md`
 - `week-4/session-8/session_08_prior_calibration.ipynb`
+- `capstone/capstone-guide.md`
+- `capstone/capstone-template.md`
+- `references/geo-experiment-agent-demo-guide.md`
+- `skills/course-examples/marketing-lift-design/SKILL.md`
+- `skills/course-examples/calibration-strategy/SKILL.md`
+
+Optional March reference:
+
 - `capstone/march-legacy/reading_07_capstone_guide.md`
 - `capstone/march-legacy/capstone_template.ipynb`
-- `../LightingSessions/How-Setup-Experiments-Claude-Code/session-plan.md`
 
 ### New May Layer
 
@@ -152,4 +158,3 @@ Workflow quality:
 - artifacts are complete and inspectable
 - skill boundary is clear
 - eval case targets a real high-risk failure
-

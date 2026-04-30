@@ -12,15 +12,17 @@ Use:
 ```text
 week-4/session-7/session_07_experimentation_geolift.ipynb
 week-4/session-8/session_08_prior_calibration.ipynb
-../LightingSessions/How-Setup-Experiments-Claude-Code/session-plan.md
-~/1-Projects/MarketingSciencePlugin/skills/calibration-strategy/SKILL.md
-~/1-Projects/MarketingSciencePlugin/skills/marketing-lift-design/SKILL.md
+references/geo-experiment-agent-demo-guide.md
+skills/course-examples/calibration-strategy/SKILL.md
+skills/course-examples/marketing-lift-design/SKILL.md
 ```
 
 ## Prompt
 
 ```text
-Given a geo-lift or lift-test result, create a Calibration Handoff for an MMM.
+Using skills/course-examples/calibration-strategy/SKILL.md as the workflow
+guide, create a Calibration Handoff for an MMM from a geo-lift or lift-test
+result.
 Summarize the treatment, effect estimate, uncertainty, population, time period,
 transferability limits, and whether the evidence should be used as a prior,
 guardrail, sensitivity check, or context only.
@@ -47,4 +49,3 @@ Answer:
 1. What caveat would be most dangerous for an agent to drop?
 2. What behavior should the eval explicitly forbid?
 3. Is this eval testing routing, workflow behavior, or final interpretation?
-
