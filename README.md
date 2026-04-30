@@ -32,13 +32,13 @@ By the end of the cohort, students can:
 
 ## Relationship To March Cohort
 
-The March course remains the technical source curriculum:
+This repo now contains the March course content that May keeps:
 
-- `../cohort-Mar26/pre-course/`
-- `../cohort-Mar26/week-1/` through `../cohort-Mar26/week-4/`
-- `../cohort-Mar26/capstone/`
-- `../cohort-Mar26/utils/`
-- `../cohort-Mar26/data/`
+- `pre-course/`
+- `week-1/` through `week-4/`
+- `utils/`
+- `data/`
+- `capstone/march-legacy/`
 
 May uses that material as the measurement spine and adds:
 
@@ -59,9 +59,14 @@ cohort-May26/
 ├── agentic-workflow-layer.md
 ├── REVIEW_AGENTIC_COURSE_UPDATE.md
 ├── artifacts/
+├── capstone/
+├── data/
 ├── evals/
 ├── labs/
-└── references/
+├── pre-course/
+├── references/
+├── utils/
+└── week-1/ ... week-4/
 ```
 
 ## Working With The Skill Pack
@@ -86,9 +91,15 @@ progression is:
 There is no single build system yet. Validate changes by:
 
 - reading changed Markdown end to end
-- running any referenced notebooks from the March cohort when notebook content is
-  copied or modified
+- running modified notebooks from this repo when notebook content changes
 - checking eval YAML structure before using it in a runner
 - keeping generated outputs out of the course source unless they are deliberate
   examples
 
+Useful commands:
+
+```bash
+uv sync
+uv run jupyter nbconvert --to notebook --execute pre-course/00_smoke_test.ipynb
+uv run jupyter nbconvert --to notebook --execute week-1/session-1/session_01_measurement_landscape.ipynb
+```

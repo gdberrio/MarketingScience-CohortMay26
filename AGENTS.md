@@ -6,7 +6,7 @@ student learning over clever automation.
 
 ## Current Goal
 
-Build the May cohort layer on top of the March 2026 bootcamp:
+Build the May cohort from the ported March 2026 bootcamp:
 
 - keep March's measurement curriculum as the technical spine
 - add agentic workflow labs and artifacts throughout the course
@@ -23,7 +23,11 @@ Build the May cohort layer on top of the March 2026 bootcamp:
 | `artifacts/` | Student-facing templates and checklists |
 | `labs/` | Agentic lab prompts and exercises by week |
 | `evals/` | Lightweight behavior eval examples |
-| `../cohort-Mar26/` | Source measurement notebooks, utilities, and data |
+| `pre-course/` | Setup, smoke test, and introductory readings |
+| `week-1/` through `week-4/` | Ported measurement notebooks and readings |
+| `utils/` | Ported helper package for EDA, MMM, and geo experiments |
+| `data/` | Ported course datasets and demo scripts |
+| `capstone/` | May capstone plus archived March capstone templates |
 | `~/1-Projects/MarketingSciencePlugin` | Companion marketing science skill pack |
 
 ## Editing Guidance
@@ -61,10 +65,8 @@ for path in pathlib.Path("evals").glob("**/*.yaml"):
 PY
 ```
 
-For copied or modified notebooks, validate from the March cohort environment:
+For copied or modified notebooks, validate from this repo:
 
 ```bash
-cd ../cohort-Mar26
 uv run jupyter nbconvert --to notebook --execute pre-course/00_smoke_test.ipynb
 ```
-

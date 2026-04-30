@@ -10,7 +10,7 @@ instead of accepting it at face value.
 Use:
 
 ```text
-../cohort-Mar26/week-1/offline/notebook_01_eda.ipynb
+week-1/offline/notebook_01_eda.ipynb
 ```
 
 ## Prompt

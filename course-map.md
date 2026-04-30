@@ -1,24 +1,22 @@
 # May-26 Course Map
 
-This map turns the March cohort into the May agentic cohort. The March notebooks
-remain the source technical curriculum. May adds agentic labs, artifacts, and
-skill/eval deliverables around those notebooks.
+This map organizes the May agentic cohort. The ported March notebooks remain the measurement spine. May adds agentic labs, artifacts, and skill/eval deliverables around those notebooks.
 
 ## Week 0: Setup And Agent Readiness
 
 ### Source Material
 
-- `../cohort-Mar26/README.md`
-- `../cohort-Mar26/pre-course/00_smoke_test.ipynb`
-- `../cohort-Mar26/pre-course/notebook_00_explore_dataset.ipynb`
-- `../cohort-Mar26/AGENTS.md`
-- `../cohort-Mar26/CLAUDE.md`
+- `README.md`
+- `pre-course/00_smoke_test.ipynb`
+- `pre-course/notebook_00_explore_dataset.ipynb`
+- `AGENTS.md`
+- harness-specific instruction files
 
 ### New May Layer
 
 - Install and verify Python/Jupyter environment.
 - Orient students to coding agents as tools that can read, edit, and run code.
-- Explain project instructions (`AGENTS.md`, `CLAUDE.md`, or harness equivalent).
+- Explain project instructions (`AGENTS.md`, harness-specific instruction files, or harness equivalent).
 - Write a first checkpoint file after setup.
 - Inspect one tiny skill and identify what failure it prevents.
 
@@ -32,11 +30,11 @@ skill/eval deliverables around those notebooks.
 
 ### Source Material
 
-- `../cohort-Mar26/pre-course/reading_01_what_is_mmm.md`
-- `../cohort-Mar26/pre-course/reading_03_causal_inference.md`
-- `../cohort-Mar26/week-1/session-1/session_01_measurement_landscape.ipynb`
-- `../cohort-Mar26/week-1/session-2/session_02_data_prep_eda.ipynb`
-- `../cohort-Mar26/week-1/offline/notebook_01_eda.ipynb`
+- `pre-course/reading_01_what_is_mmm.md`
+- `pre-course/reading_03_causal_inference.md`
+- `week-1/session-1/session_01_measurement_landscape.ipynb`
+- `week-1/session-2/session_02_data_prep_eda.ipynb`
+- `week-1/offline/notebook_01_eda.ipynb`
 - `../LightingSessions/Context-rot-Claude-Code-Marketing-Analytics/session-plan.md`
 
 ### New May Layer
@@ -49,7 +47,7 @@ skill/eval deliverables around those notebooks.
 
 ### Deliverables
 
-- EDA notebook or March notebook run.
+- EDA notebook run.
 - `artifacts/eda-findings-template.md` completed.
 - `labs/week-1/agentic-eda-lab.md` completed.
 
@@ -57,10 +55,10 @@ skill/eval deliverables around those notebooks.
 
 ### Source Material
 
-- `../cohort-Mar26/week-2/offline/notebook_02_adstock_saturation.ipynb`
-- `../cohort-Mar26/week-2/session-3/session_03_ols_mmm.ipynb`
-- `../cohort-Mar26/week-2/offline/notebook_03_pymc_basics.ipynb`
-- `../cohort-Mar26/week-2/session-4/session_04_bayesian_mmm.ipynb`
+- `week-2/offline/notebook_02_adstock_saturation.ipynb`
+- `week-2/session-3/session_03_ols_mmm.ipynb`
+- `week-2/offline/notebook_03_pymc_basics.ipynb`
+- `week-2/session-4/session_04_bayesian_mmm.ipynb`
 - `../LightingSessions/MMM-30mins-Claude-Code/session-plan.md`
 - `../LightingSessions/Bayesian-v-Frequencist-MMM/session-plan/session-plan.md`
 
@@ -82,11 +80,11 @@ skill/eval deliverables around those notebooks.
 
 ### Source Material
 
-- `../cohort-Mar26/week-3/session-5/session_05_meridian.ipynb`
-- `../cohort-Mar26/week-3/offline/notebook_04_meridian_setup.ipynb`
-- `../cohort-Mar26/week-3/offline/notebook_06_meridian_post_modeling.ipynb`
-- `../cohort-Mar26/week-3/session-6/session_06_attribution_byod.ipynb`
-- `../cohort-Mar26/.claude/skills/meridian-model/SKILL.md`
+- `week-3/session-5/session_05_meridian.ipynb`
+- `week-3/offline/notebook_04_meridian_setup.ipynb`
+- `week-3/offline/notebook_06_meridian_post_modeling.ipynb`
+- `week-3/session-6/session_06_attribution_byod.ipynb`
+- `skills/course-examples/meridian-model/SKILL.md`
 - `~/1-Projects/MarketingSciencePlugin/skills/meridian-setup/SKILL.md`
 - `~/1-Projects/MarketingSciencePlugin/skills/meridian-fit/SKILL.md`
 - `~/1-Projects/MarketingSciencePlugin/skills/meridian-diagnostics/SKILL.md`
@@ -112,12 +110,12 @@ skill/eval deliverables around those notebooks.
 
 ### Source Material
 
-- `../cohort-Mar26/week-4/session-7/session_07_experimentation_geolift.ipynb`
-- `../cohort-Mar26/week-4/offline/notebook_06_power_analysis.ipynb`
-- `../cohort-Mar26/week-4/offline/reading_06_calibrating_mmm.md`
-- `../cohort-Mar26/week-4/session-8/session_08_prior_calibration.ipynb`
-- `../cohort-Mar26/capstone/reading_07_capstone_guide.md`
-- `../cohort-Mar26/capstone/capstone_template.ipynb`
+- `week-4/session-7/session_07_experimentation_geolift.ipynb`
+- `week-4/offline/notebook_06_power_analysis.ipynb`
+- `week-4/offline/reading_06_calibrating_mmm.md`
+- `week-4/session-8/session_08_prior_calibration.ipynb`
+- `capstone/march-legacy/reading_07_capstone_guide.md`
+- `capstone/march-legacy/capstone_template.ipynb`
 - `../LightingSessions/How-Setup-Experiments-Claude-Code/session-plan.md`
 
 ### New May Layer

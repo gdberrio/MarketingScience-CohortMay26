@@ -10,8 +10,8 @@ The point is to make setup inspectable before expensive modeling begins.
 Use:
 
 ```text
-../cohort-Mar26/week-3/session-5/session_05_meridian.ipynb
-../cohort-Mar26/.claude/skills/meridian-model/SKILL.md
+week-3/session-5/session_05_meridian.ipynb
+skills/course-examples/meridian-model/SKILL.md
 ~/1-Projects/MarketingSciencePlugin/skills/meridian-setup/SKILL.md
 ```
 

@@ -10,8 +10,8 @@ that checks whether a skill preserves the causal caveats.
 Use:
 
 ```text
-../cohort-Mar26/week-4/session-7/session_07_experimentation_geolift.ipynb
-../cohort-Mar26/week-4/session-8/session_08_prior_calibration.ipynb
+week-4/session-7/session_07_experimentation_geolift.ipynb
+week-4/session-8/session_08_prior_calibration.ipynb
 ../LightingSessions/How-Setup-Experiments-Claude-Code/session-plan.md
 ~/1-Projects/MarketingSciencePlugin/skills/calibration-strategy/SKILL.md
 ~/1-Projects/MarketingSciencePlugin/skills/marketing-lift-design/SKILL.md

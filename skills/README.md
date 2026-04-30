@@ -18,8 +18,8 @@ inspect it, and copy only small teaching examples or templates when needed.
 
 Start with course-specific examples:
 
-- `../cohort-Mar26/.claude/skills/mmm-variable-classification/SKILL.md`
-- `../cohort-Mar26/.claude/skills/meridian-model/SKILL.md`
+- `skills/course-examples/mmm-variable-classification/SKILL.md`
+- `skills/course-examples/meridian-model/SKILL.md`
 
 Questions:
 

@@ -10,8 +10,8 @@ the model decisions auditable.
 Use:
 
 ```text
-../cohort-Mar26/week-2/session-3/session_03_ols_mmm.ipynb
-../cohort-Mar26/week-2/session-4/session_04_bayesian_mmm.ipynb
+week-2/session-3/session_03_ols_mmm.ipynb
+week-2/session-4/session_04_bayesian_mmm.ipynb
 ```
 
 ## Prompt
