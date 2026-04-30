@@ -1,0 +1,70 @@
+# AGENTS.md
+
+May-26 is a course repository for Advanced Marketing Measurement with Coding
+Agents. Content is educational. Prioritize clarity, reproducibility, and
+student learning over clever automation.
+
+## Current Goal
+
+Build the May cohort layer on top of the March 2026 bootcamp:
+
+- keep March's measurement curriculum as the technical spine
+- add agentic workflow labs and artifacts throughout the course
+- teach skills, artifact contracts, validation checklists, safety, and evals
+- avoid turning the course into tool marketing
+
+## Key Locations
+
+| Path | Purpose |
+|---|---|
+| `README.md` | May cohort framing and schedule |
+| `course-map.md` | Week-by-week mapping from March material to May updates |
+| `agentic-workflow-layer.md` | Shared concepts for agents, skills, artifacts, and evals |
+| `artifacts/` | Student-facing templates and checklists |
+| `labs/` | Agentic lab prompts and exercises by week |
+| `evals/` | Lightweight behavior eval examples |
+| `../cohort-Mar26/` | Source measurement notebooks, utilities, and data |
+| `~/1-Projects/MarketingSciencePlugin` | Companion marketing science skill pack |
+
+## Editing Guidance
+
+- Keep files concise and course-facing.
+- Prefer reusable templates and labs over long abstract essays.
+- When adapting March material, preserve the original measurement logic and add
+  agentic replay/validation sections around it.
+- Do not duplicate the full skill pack in this repo unless explicitly asked.
+  Link to it or copy only small teaching templates.
+- Use ASCII unless a source file already uses non-ASCII.
+
+## Agentic Curriculum Principles
+
+- Fundamentals first: students must understand the method before delegating work.
+- Skills encode judgment; they do not replace judgment.
+- Every agent-generated analysis needs a validation surface.
+- Long sessions need checkpoints, phase separation, and compact instructions.
+- Artifacts beat chat memory for durable decisions.
+- Evals test severe failure modes, not generic helpfulness.
+
+## Validation Commands
+
+There is no formal test suite for this folder yet.
+
+Use these checks as relevant:
+
+```bash
+find . -maxdepth 3 -type f | sort
+python - <<'PY'
+import pathlib, yaml
+for path in pathlib.Path("evals").glob("**/*.yaml"):
+    yaml.safe_load(path.read_text())
+    print(f"ok: {path}")
+PY
+```
+
+For copied or modified notebooks, validate from the March cohort environment:
+
+```bash
+cd ../cohort-Mar26
+uv run jupyter nbconvert --to notebook --execute pre-course/00_smoke_test.ipynb
+```
+

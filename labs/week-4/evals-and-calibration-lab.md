@@ -1,0 +1,50 @@
+# Week 4 Lab: Calibration Handoff And Behavior Evals
+
+## Goal
+
+Turn experiment evidence into a calibration handoff, then write an eval case
+that checks whether a skill preserves the causal caveats.
+
+## Source Material
+
+Use:
+
+```text
+../cohort-Mar26/week-4/session-7/session_07_experimentation_geolift.ipynb
+../cohort-Mar26/week-4/session-8/session_08_prior_calibration.ipynb
+../LightingSessions/How-Setup-Experiments-Claude-Code/session-plan.md
+~/1-Projects/MarketingSciencePlugin/skills/calibration-strategy/SKILL.md
+~/1-Projects/MarketingSciencePlugin/skills/marketing-lift-design/SKILL.md
+```
+
+## Prompt
+
+```text
+Given a geo-lift or lift-test result, create a Calibration Handoff for an MMM.
+Summarize the treatment, effect estimate, uncertainty, population, time period,
+transferability limits, and whether the evidence should be used as a prior,
+guardrail, sensitivity check, or context only.
+```
+
+## Student Verification
+
+Complete `artifacts/calibration-handoff-template.md`.
+
+Then create one behavior eval case under `evals/skills/<skill>/cases.yaml`.
+
+The eval should include:
+
+- `id`
+- `skill`
+- `prompt`
+- `expected`
+- `disallowed`
+
+## Reflection
+
+Answer:
+
+1. What caveat would be most dangerous for an agent to drop?
+2. What behavior should the eval explicitly forbid?
+3. Is this eval testing routing, workflow behavior, or final interpretation?
+
