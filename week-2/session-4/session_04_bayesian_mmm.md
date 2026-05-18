@@ -1,5 +1,3 @@
-# Session 04 Bayesian Mmm
-
 # Session 4: Baby MMM from Scratch -- Bayesian with PyMC
 
 **Marketing Science Bootcamp -- Week 2, Live Session (2 hours)**
@@ -218,12 +216,17 @@ Choosing priors is where we encode domain knowledge. Here is our rationale for e
 
 | Parameter | Prior | Shape | Reasoning |
 |---|---|---|---|
-| **theta** (adstock decay) | `Beta(2, 2)` | Per channel | Mode at 0.5, supports full [0,1] range. TV might warrant `Beta(3, 2)` (higher decay). |
-| **alpha** (Hill steepness) | `Gamma(3, 1)` | Per channel | Positive, mode around 2. Allows values from ~0.5 to ~7, covering gentle to aggressive saturation. |
-| **gamma** (Hill inflection) | `Beta(2, 2)` | Per channel | Mode at 0.5, bounded [0,1]. Controls where diminishing returns kick in. |
+| **theta** (adstock decay) | `Beta(2, 2)` | Per channel | Centered at 0.5, supports the full [0,1] range. TV might warrant `Beta(3, 2)` (higher decay). |
+| **alpha** (Hill steepness) | `1 + Gamma(2, 1)` | Per channel | Keeps `alpha > 1`, which gives a smooth S-curve and avoids singular gradients at zero media spend. Mode around 2, with room for steeper curves. |
+| **gamma** (Hill inflection) | `Beta(2, 2)` | Per channel | Centered at 0.5 and bounded [0,1]. Controls where diminishing returns kick in. |
 | **beta_media** (channel effect) | `HalfNormal(0.5)` | Per channel | **Positive only** -- media should help sales. This is a key advantage over OLS. |
 | **intercept** | `Normal(0.5, 0.5)` | Scalar | Centered near y_scaled mean (~0.5). Represents baseline sales without media. |
 | **sigma** (noise) | `HalfNormal(0.2)` | Scalar | Positive. Scaled data has range [0,1], so noise should be small. |
+
+**Why constrain alpha above 1?** The Hill transformation includes `x ** alpha`. This dataset has real
+zero-spend periods after scaling. When `0 < alpha < 1`, the gradient of `x ** alpha` at `x = 0` is
+singular, which can make NUTS collapse into divergent transitions. We still learn `alpha` from the
+data, but we parameterize it as `1 + alpha_offset` so the sampler stays in a numerically stable region.
 
 **Why HalfNormal for beta_media?** In OLS, media coefficients can go negative (which makes no business
 sense -- more spending leading to fewer sales). The `HalfNormal` prior constrains coefficients to be
@@ -242,12 +245,14 @@ axes[0, 0].set_title("theta ~ Beta(2, 2)\n(Adstock Decay)", fontsize=12, fontwei
 axes[0, 0].set_xlabel("theta")
 axes[0, 0].fill_between(x_grid, sp_stats.beta.pdf(x_grid, 2, 2), alpha=0.2, color="steelblue")
 
-# alpha ~ Gamma(3, 1)
-x_grid2 = np.linspace(0, 10, 200)
-axes[0, 1].plot(x_grid2, sp_stats.gamma.pdf(x_grid2, 3, scale=1), linewidth=2, color="darkorange")
-axes[0, 1].set_title("alpha ~ Gamma(3, 1)\n(Hill Steepness)", fontsize=12, fontweight="bold")
+# alpha = 1 + Gamma(2, 1)
+x_grid2 = np.linspace(1, 10, 200)
+alpha_density = sp_stats.gamma.pdf(x_grid2 - 1, 2, scale=1)
+axes[0, 1].plot(x_grid2, alpha_density, linewidth=2, color="darkorange")
+axes[0, 1].set_title("alpha = 1 + Gamma(2, 1)\n(Hill Steepness)", fontsize=12, fontweight="bold")
 axes[0, 1].set_xlabel("alpha")
-axes[0, 1].fill_between(x_grid2, sp_stats.gamma.pdf(x_grid2, 3, scale=1), alpha=0.2, color="darkorange")
+axes[0, 1].fill_between(x_grid2, alpha_density, alpha=0.2, color="darkorange")
+axes[0, 1].axvline(1, color="black", linestyle="--", alpha=0.5, linewidth=1)
 
 # gamma ~ Beta(2, 2)
 axes[0, 2].plot(x_grid, sp_stats.beta.pdf(x_grid, 2, 2), linewidth=2, color="seagreen")
@@ -282,7 +287,7 @@ plt.show()
 
 print("These priors encode our domain knowledge:")
 print("  - theta: agnostic about decay rate, centered at 0.5")
-print("  - alpha: expect moderate saturation (mode ~2), allows steep curves")
+print("  - alpha: expect an S-curve with alpha > 1 for stable gradients at zero spend")
 print("  - gamma: agnostic about inflection point")
 print("  - beta_media: MUST be positive (media helps sales)")
 print("  - intercept: centered near scaled y mean")
@@ -328,7 +333,8 @@ def adstock_geometric_pytensor(x, theta):
     def step(x_t, x_prev, theta):
         return x_t + theta * x_prev
 
-    result, _ = pt.scan(
+    from pytensor.scan.basic import scan as pt_scan
+    result, _ = pt_scan(
         fn=step,
         sequences=[x],              # x_t comes from this sequence
         outputs_info=[pt.zeros(())], # x_prev starts at 0
@@ -454,9 +460,10 @@ media_pt = pt.as_tensor_variable(media_scaled)
 with pm.Model() as bayesian_mmm:
 
     # === PRIORS: Transformation parameters (per channel) ===
-    theta = pm.Beta("theta", alpha=2, beta=2, shape=n_channels)     # adstock decay [0, 1]
-    alpha = pm.Gamma("alpha", alpha=3, beta=1, shape=n_channels)    # Hill steepness (positive)
-    gamma = pm.Beta("gamma", alpha=2, beta=2, shape=n_channels)     # Hill inflection [0, 1]
+    theta = pm.Beta("theta", alpha=2, beta=2, shape=n_channels)              # adstock decay [0, 1]
+    alpha_offset = pm.Gamma("alpha_offset", alpha=2, beta=1, shape=n_channels)  # positive offset
+    alpha = pm.Deterministic("alpha", 1 + alpha_offset)                      # Hill steepness > 1
+    gamma = pm.Beta("gamma", alpha=2, beta=2, shape=n_channels)              # Hill inflection [0, 1]
 
     # === PRIORS: Regression coefficients ===
     beta_media = pm.HalfNormal("beta_media", sigma=0.5, shape=n_channels)  # positive only
@@ -483,13 +490,13 @@ with pm.Model() as bayesian_mmm:
 
     print("Model specification complete.")
     print(f"\nModel parameters:")
-    print(f"  theta:      {n_channels} params (adstock decay per channel)")
-    print(f"  alpha:      {n_channels} params (Hill steepness per channel)")
-    print(f"  gamma:      {n_channels} params (Hill inflection per channel)")
-    print(f"  beta_media: {n_channels} params (channel effects)")
-    print(f"  intercept:  1 param")
-    print(f"  sigma:      1 param")
-    print(f"  TOTAL:      {4 * n_channels + 2} free parameters")
+    print(f"  theta:       {n_channels} params (adstock decay per channel)")
+    print(f"  alpha:       {n_channels} deterministic params (1 + positive offset)")
+    print(f"  gamma:       {n_channels} params (Hill inflection per channel)")
+    print(f"  beta_media:  {n_channels} params (channel effects)")
+    print(f"  intercept:   1 param")
+    print(f"  sigma:       1 param")
+    print(f"  TOTAL:       {4 * n_channels + 2} free parameters")
 ```
 
 ```python
@@ -512,14 +519,15 @@ Now we run MCMC sampling. Key arguments:
 | `draws` | 2000 | Number of posterior samples per chain |
 | `tune` | 1000 | Warm-up samples (discarded) -- sampler adapts step size |
 | `cores` | 4 | Number of parallel chains |
-| `target_accept` | 0.9 | Higher = smaller step size = fewer divergences but slower |
+| `target_accept` | 0.99 | Higher = smaller step size = fewer divergences but slower |
 | `random_seed` | 42 | Reproducibility |
 
 **Expect this to take 5-15 minutes** depending on your machine. The `scan` operations for adstock
 are sequential by nature, so this model is slower than a standard regression.
 
 **Debugging convergence issues:**
-- If you see many **divergent transitions**, try increasing `target_accept` to 0.95 or 0.99.
+- If you see many **divergent transitions**, first check the model geometry: exact zeros plus `alpha < 1` can create singular gradients in the Hill transform.
+- We use `target_accept=0.99` here because the Hill transformation creates a curved posterior geometry; this is slower but more reliable for teaching.
 - If chains get **stuck**, check your priors -- they may be too tight or conflicting with data.
 - If r_hat > 1.01, try increasing `draws` and `tune`.
 - If sampling is very slow, reduce the number of channels or observations.
@@ -533,7 +541,7 @@ with bayesian_mmm:
         tune=1000,
         cores=4,
         random_seed=RANDOM_SEED,
-        target_accept=0.9,
+        target_accept=0.99,
         return_inferencedata=True,
     )
 
@@ -549,6 +557,51 @@ if n_divergences > 0:
 else:
     print("  No divergences -- sampling looks healthy.")
 ```
+
+### 3g. What Caused the Divergences?
+
+If you previously ran this notebook and saw every posterior draw diverge, the problem was not simply
+that the sampler needed more patience. The model geometry was broken in a specific place.
+
+The Hill saturation function contains this term:
+
+$$
+x^{lpha}
+$$
+
+Our media inputs are min-max scaled to `[0, 1]`, and several channels have real zero-spend periods.
+For example, a month with no YouTube spend becomes `0.0` after scaling. That is fine for the model
+value: `0 ** alpha` is still zero for positive `alpha`.
+
+The issue is the **gradient** that NUTS needs in order to sample efficiently. When the old prior allowed
+`0 < alpha < 1`, the derivative of `x ** alpha` at `x = 0` becomes singular. In plain language: the
+curve has a sharp, nearly vertical edge at zero. NUTS tries to follow the posterior geometry through
+that edge, its step size collapses, and the result is a wall of divergent transitions.
+
+That is why simply increasing `target_accept` was not enough. A higher `target_accept` asks NUTS to use
+smaller steps, but it does not remove the singular-gradient region. The sampler was being cautious in
+a geometry that was still fundamentally hard to traverse.
+
+The fix is to parameterize Hill steepness as:
+
+```python
+alpha_offset = pm.Gamma("alpha_offset", alpha=2, beta=1, shape=n_channels)
+alpha = pm.Deterministic("alpha", 1 + alpha_offset)
+```
+
+This keeps `alpha > 1`. The Hill curve can still learn different saturation shapes, but it avoids the
+problematic `alpha < 1` region where zero media spend creates unstable gradients. We also use
+`target_accept=0.99` because this posterior is still curved and mildly difficult; that setting makes
+NUTS take smaller, more reliable steps after the model geometry has been fixed.
+
+So the lesson is:
+
+1. Divergences are not just warnings to silence. They tell us the sampler found geometry it could not
+   explore reliably.
+2. The data mattered: exact zeros in scaled media channels exposed the problem.
+3. The prior mattered: allowing `alpha < 1` made the Hill transform numerically awkward at those zeros.
+4. The fix works by changing the parameterization, not by changing the observed data or hiding the
+   divergences.
 
 ---
 
@@ -1013,7 +1066,8 @@ your priors need adjustment.
 # with pm.Model() as extended_mmm:
 #     # --- Same transformation priors as before ---
 #     theta = pm.Beta("theta", alpha=2, beta=2, shape=n_channels)
-#     alpha = pm.Gamma("alpha", alpha=3, beta=1, shape=n_channels)
+#     alpha_offset = pm.Gamma("alpha_offset", alpha=2, beta=1, shape=n_channels)
+#     alpha = pm.Deterministic("alpha", 1 + alpha_offset)
 #     gamma = pm.Beta("gamma", alpha=2, beta=2, shape=n_channels)
 #
 #     # --- Regression coefficients ---
@@ -1036,7 +1090,7 @@ your priors need adjustment.
 #     y_obs = pm.Normal("y_obs", mu=mu, sigma=sigma, observed=y_scaled)
 #
 #     # --- Sample ---
-#     trace_extended = pm.sample(draws=2000, tune=1000, cores=4, random_seed=42, target_accept=0.9)
+#     trace_extended = pm.sample(draws=2000, tune=1000, cores=4, random_seed=42, target_accept=0.99)
 #
 # az.summary(trace_extended, var_names=["beta_control", "beta_media", "intercept"])
 
@@ -1306,4 +1360,3 @@ Before the next session, make sure you have:
 1. This notebook with a **working Bayesian MMM** (sampling completed, convergence checks passed).
 2. A **written comparison** of 3 key differences between OLS and Bayesian results (see Section 7).
 3. Your **BYOD data** cleaned and formatted for Week 3.
-
