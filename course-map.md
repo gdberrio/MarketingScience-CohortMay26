@@ -84,6 +84,9 @@ This map organizes the May agentic cohort. The ported March notebooks remain the
 - `week-3/session-5/session_05_meridian.ipynb`
 - `week-3/offline/notebook_04_meridian_setup.ipynb`
 - `week-3/offline/notebook_06_meridian_post_modeling.ipynb`
+- `week-3/offline/reading_09_time_varying_intercepts.md`
+- `week-3/offline/reading_08_meridian_knots.md`
+- `week-3/offline/reading_10_pymc_marketing_time_effects.md`
 - `week-3/session-6/session_06_attribution_byod.ipynb`
 - `skills/course-examples/meridian-model/SKILL.md`
 - `artifacts/meridian-model-spec-template.md`
