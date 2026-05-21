@@ -49,6 +49,9 @@ May uses that material as the measurement spine and adds:
 - behavior eval examples
 - capstone requirements for reusable workflows
 
+For the recommended reading order across the cohort, see
+`references/reading-roadmap.md`.
+
 ## Repository Layout
 
 ```text
@@ -109,6 +112,9 @@ is:
 3. Critique the output against a validation checklist.
 4. Adapt or create a skill.
 5. Write one behavior eval case for a high-risk failure.
+
+For a step-by-step build path, see
+`references/how-to-write-a-skill.md`.
 
 ## Validation
 

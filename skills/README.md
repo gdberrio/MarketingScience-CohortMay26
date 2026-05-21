@@ -61,6 +61,7 @@ Create or modify a skill for a repeated workflow:
 - experiment QA
 - post-model readout
 
+Read `../references/how-to-write-a-skill.md` for the step-by-step build path.
 Use `skill-readiness-checklist.md` before calling it done.
 
 ### 5. Evaluate

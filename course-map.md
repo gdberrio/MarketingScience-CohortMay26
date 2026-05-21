@@ -2,6 +2,8 @@
 
 This map organizes the May agentic cohort. The ported March notebooks remain the measurement spine. May adds agentic labs, artifacts, and skill/eval deliverables around those notebooks.
 
+For the recommended reading sequence, use `references/reading-roadmap.md`.
+
 ## Week 0: Setup And Agent Readiness
 
 ### Source Material
@@ -61,6 +63,7 @@ This map organizes the May agentic cohort. The ported March notebooks remain the
 - `week-2/session-4/session_04_bayesian_mmm.ipynb`
 - `references/agentic-mmm-demo-guide.md`
 - `references/bayesian-vs-frequentist-mmm-guide.md`
+- `references/how-to-write-a-skill.md`
 - `skills/course-examples/mmm-variable-mapping/SKILL.md`
 
 ### New May Layer
@@ -132,6 +135,7 @@ Optional March reference:
 - Compare manual geo-experiment design prompts with a reusable skill workflow.
 - Teach calibration handoff as the bridge from experiments to MMM.
 - Add behavior evals for skills and agent workflows.
+- Use the step-by-step skill-writing guide before capstone skill patches.
 - Require capstone teams to create or improve one reusable workflow asset.
 
 ### Deliverables
