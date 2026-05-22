@@ -126,9 +126,9 @@ Suppose Stage 1 estimates:
 
 $$
 \widehat{BrandedSearch}_t =
-0.30 \times TV^\*_{t} +
-0.20 \times CTV^\*_{t} +
-0.10 \times Display^\*_{t}
+0.30 \times TV^{*}_{t} +
+0.20 \times CTV^{*}_{t} +
+0.10 \times Display^{*}_{t}
 $$
 
 where each media variable has already been adstocked and saturated.
@@ -137,14 +137,14 @@ Suppose Stage 2 estimates:
 
 $$
 \widehat{Sales}_t =
-0.50 \times PaidSearch^\*_{t} +
+0.50 \times PaidSearch^{*}_{t} +
 2.00 \times \widehat{BrandedSearch}_t
 $$
 
 Then TV's indirect contribution to sales is:
 
 $$
-TV \rightarrow BrandedSearch \rightarrow Sales
+\text{TV} \rightarrow \text{Branded Search} \rightarrow \text{Sales}
 = 0.30 \times 2.00 = 0.60
 $$
 
@@ -226,7 +226,7 @@ $$
 $$
 \mu_{M,t} =
 \alpha_M +
-\sum_j \beta^{M}_j UpperFunnel^\*_{j,t}
+\sum_j \beta^{M}_j UpperFunnel^{*}_{j,t}
 + \sum_k \gamma^{M}_k Controls_{k,t}
 $$
 
@@ -237,7 +237,7 @@ $$
 $$
 \mu_{Y,t} =
 \alpha_Y +
-\sum_j \beta^{Y}_j LowerFunnel^\*_{j,t}
+\sum_j \beta^{Y}_j LowerFunnel^{*}_{j,t}
 + \lambda M_t
 + \sum_k \gamma^{Y}_k Controls_{k,t}
 $$
