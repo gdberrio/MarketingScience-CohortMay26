@@ -118,6 +118,7 @@ For the recommended reading sequence, use `references/reading-roadmap.md`.
 - `week-4/session-7/session_07_experimentation_geolift.ipynb`
 - `week-4/offline/notebook_06_power_analysis.ipynb`
 - `week-4/offline/reading_06_calibrating_mmm.md`
+- `week-4/offline/reading_07_llm_evals_for_agentic_measurement.md`
 - `week-4/session-8/session_08_prior_calibration.ipynb`
 - `capstone/capstone-guide.md`
 - `capstone/capstone-template.md`

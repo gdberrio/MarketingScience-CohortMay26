@@ -12,6 +12,7 @@ Use:
 ```text
 week-4/session-7/session_07_experimentation_geolift.ipynb
 week-4/session-8/session_08_prior_calibration.ipynb
+week-4/offline/reading_07_llm_evals_for_agentic_measurement.md
 references/geo-experiment-agent-demo-guide.md
 skills/course-examples/calibration-strategy/SKILL.md
 skills/course-examples/marketing-lift-design/SKILL.md

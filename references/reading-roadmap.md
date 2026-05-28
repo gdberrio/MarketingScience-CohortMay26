@@ -167,8 +167,9 @@ Required sequence:
 6. `week-4/session-8/session_08_prior_calibration.md`
 7. `skills/course-examples/calibration-strategy/SKILL.md`
 8. `artifacts/calibration-handoff-template.md`
-9. `labs/week-4/evals-and-calibration-lab.md`
-10. `evals/skills/mmm-variable-mapping/cases.yaml`
+9. `week-4/offline/reading_07_llm_evals_for_agentic_measurement.md`
+10. `labs/week-4/evals-and-calibration-lab.md`
+11. `evals/skills/mmm-variable-mapping/cases.yaml`
 
 Capstone sequence:
 
@@ -176,7 +177,8 @@ Capstone sequence:
 2. `capstone/capstone-template.md`
 3. `references/how-to-write-a-skill.md`
 4. `skills/skill-readiness-checklist.md`
-5. `artifacts/model-iteration-log-template.md`
+5. `week-4/offline/reading_07_llm_evals_for_agentic_measurement.md`
+6. `artifacts/model-iteration-log-template.md`
 
 Optional March reference:
 
@@ -218,6 +220,9 @@ Minimum catch-up path:
 5. The current week's lab
 6. The artifact template for the current week
 7. `artifacts/agent-output-validation-checklist.md`
+
+For Week 4 or capstone catch-up, add
+`week-4/offline/reading_07_llm_evals_for_agentic_measurement.md`.
 
 Then backfill earlier technical readings as needed.
 
