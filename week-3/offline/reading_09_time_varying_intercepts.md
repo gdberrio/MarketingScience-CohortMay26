@@ -9,9 +9,9 @@ one, how it differs from trend or seasonality features, and what can go wrong
 when it is too flexible or too rigid.
 
 After this reading, compare two framework implementations:
-[`reading_08_meridian_knots.md`](reading_08_meridian_knots.md) for Google
+`[reading_08_meridian_knots.md](reading_08_meridian_knots.md)` for Google
 Meridian and
-[`reading_10_pymc_marketing_time_effects.md`](reading_10_pymc_marketing_time_effects.md)
+`[reading_10_pymc_marketing_time_effects.md](reading_10_pymc_marketing_time_effects.md)`
 for PyMC-Marketing.
 
 ---
@@ -235,7 +235,7 @@ Risk:
 - too few knots can miss important time structure
 - knot placement can matter
 
-### Seasonal Components
+### easonal Components
 
 Sometimes the intercept is decomposed into trend plus seasonality:
 
@@ -252,11 +252,11 @@ Good for:
 - retail, travel, subscriptions, and other seasonal businesses
 - models where you want a clear trend-versus-seasonality story
 
-Risk:
+Risk:S
 
 - may be too rigid for irregular events
 - can still be confounded with marketing if campaigns follow the same seasonal
-  pattern
+pattern
 
 ---
 
@@ -359,9 +359,9 @@ it really is.
 The model is balancing two risks:
 
 - **Under-control for time**: media gets credit for trend, seasonality, or
-  omitted demand shocks.
+omitted demand shocks.
 - **Over-control for time**: the baseline absorbs variation that should help
-  identify media effects.
+identify media effects.
 
 This is why time-varying intercepts are not just a technical choice. They are
 part of the causal design of the model.

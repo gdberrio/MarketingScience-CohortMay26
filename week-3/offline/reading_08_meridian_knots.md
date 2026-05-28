@@ -4,10 +4,10 @@ A practical guide to Meridian's `knots` parameter, time-varying intercepts,
 and the choices analysts make when modeling trend and seasonality.
 
 For the broader Bayesian modeling concept, read
-[`reading_09_time_varying_intercepts.md`](reading_09_time_varying_intercepts.md)
+`[reading_09_time_varying_intercepts.md](reading_09_time_varying_intercepts.md)`
 first. This reading focuses on how Meridian implements that idea.
 For a comparison with PyMC-Marketing's approach, see
-[`reading_10_pymc_marketing_time_effects.md`](reading_10_pymc_marketing_time_effects.md).
+`[reading_10_pymc_marketing_time_effects.md](reading_10_pymc_marketing_time_effects.md)`.
 
 Knots are one of the easiest Meridian settings to skip past, because they look
 like a technical spline detail. They are not just a technical detail. In an MMM,
@@ -52,7 +52,7 @@ pattern.
 - **Fewer knots**: smoother time pattern, higher bias, lower variance.
 - **One knot**: effectively one common intercept across all time periods.
 - **A knot at every time point**: each modeled time period can have its own
-  time effect.
+time effect.
 
 This is a bias-variance decision. It is also a causal decision, because the
 time pattern can compete with media variables for explaining the KPI.
@@ -212,7 +212,7 @@ from meridian.model import spec
 model_spec = spec.ModelSpec(knots=10)
 ```
 
-### `knots=[0, 13, 26, 39, 52, 78, 103]`
+### `knots=[,0 13, 26, 39, 52, 78, 103]`
 
 This manually places knots at specific zero-indexed time locations.
 
@@ -282,7 +282,7 @@ This can be helpful when:
 - there are few geos
 - time movement is gradual
 - you have strong explicit controls for holidays, price, distribution, macro,
-  or other demand drivers
+or other demand drivers
 
 But it can be risky when:
 
@@ -313,10 +313,10 @@ Practical guidance:
 
 - Start with the default when you have a healthy number of geos.
 - Reduce knots if the model overfits, media effects look implausible, or the
-  time-varying intercept is doing too much work.
+time-varying intercept is doing too much work.
 - Be more conservative when the number of geos is small.
 - Be careful combining full knots with many event controls; both are trying to
-  explain time.
+explain time.
 
 ### National-Level Models
 
@@ -332,7 +332,7 @@ Practical guidance:
 - Add flexibility gradually.
 - Prefer explicit, interpretable controls for known events.
 - Use periodic functions for smooth seasonality when that assumption is
-  reasonable.
+reasonable.
 - Watch for unstable or unrealistic media estimates as knots increase.
 
 National models are especially sensitive to the knots decision because time,
@@ -429,11 +429,11 @@ controls instead of only changing knots.
 Examples:
 
 - If COVID cases affected both demand and media planning, add a COVID-related
-  control if available.
+control if available.
 - If price promotions drive both media bursts and revenue spikes, add price or
-  promotion controls.
+promotion controls.
 - If holidays have repeatable effects, add holiday indicators or seasonal
-  functions.
+functions.
 - If distribution changed, add distribution or availability controls.
 
 Knots can help with unobserved shared time patterns, but they are not a
@@ -504,11 +504,13 @@ flexibility of the shared time-varying intercept.
 
 That is different from dummy variables or Fourier terms:
 
-| Approach | What It Says | Best Use | Main Risk |
-|---|---|---|---|
-| Meridian knots | Let the baseline bend over time using a shared time-varying intercept | Unknown trend, irregular shared shocks, smooth residual time movement | Can absorb media signal or omitted controls |
-| Dummy variables | Estimate a separate effect for named periods or events | Holidays, launches, outages, known event windows | Too many dummies can overfit or compete with media |
-| Fourier/cyclical terms | Estimate smooth repeating seasonal waves | Annual or weekly seasonality that repeats predictably | Too rigid for one-off shocks or moving holidays |
+
+| Approach               | What It Says                                                          | Best Use                                                              | Main Risk                                          |
+| ---------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | -------------------------------------------------- |
+| Meridian knots         | Let the baseline bend over time using a shared time-varying intercept | Unknown trend, irregular shared shocks, smooth residual time movement | Can absorb media signal or omitted controls        |
+| Dummy variables        | Estimate a separate effect for named periods or events                | Holidays, launches, outages, known event windows                      | Too many dummies can overfit or compete with media |
+| Fourier/cyclical terms | Estimate smooth repeating seasonal waves                              | Annual or weekly seasonality that repeats predictably                 | Too rigid for one-off shocks or moving holidays    |
+
 
 The key difference is the assumption being made.
 
@@ -542,19 +544,19 @@ intercepts, and noise.
 This has two important consequences:
 
 1. Knots are good at capturing time movement that affects all geos at roughly
-   the same time.
+  the same time.
 2. Knots are not the best way to represent an event whose effect differs a lot
-   by geo, channel, store, or customer segment.
+  by geo, channel, store, or customer segment.
 
 For example:
 
 - A national demand shock may be reasonable for the time-varying intercept.
 - A national holiday might be either a dummy control or part of the time
-  baseline, depending on whether you need to interpret it separately.
+baseline, depending on whether you need to interpret it separately.
 - A regional weather event is usually better as a control than as a shared
-  time spline.
+time spline.
 - Smooth annual seasonality may be more parsimonious as Fourier terms,
-  especially in a national model.
+especially in a national model.
 
 Another practical difference: dummy variables and Fourier terms are explicit
 columns in your data. Their coefficients can be inspected as effects of named
@@ -571,11 +573,11 @@ more natural lever.
 Use this rule of thumb:
 
 - Use **dummy variables** for named, discrete events you want to control for or
-  explain.
+explain.
 - Use **Fourier/cyclical terms** for smooth, repeating seasonality with a known
-  period.
+period.
 - Use **Meridian knots** for residual shared time movement that is not easily
-  explained by named events or simple repeating cycles.
+explained by named events or simple repeating cycles.
 
 In practice, a good model often uses a combination:
 

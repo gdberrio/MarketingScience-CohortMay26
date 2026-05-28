@@ -90,3 +90,7 @@ Then add a short modeling note with:
 - Treating every positive coefficient as causal.
 - Hiding unresolved role decisions inside prose.
 - Ignoring time order when classifying controls.
+
+call `scripts/script.py`
+
+! 

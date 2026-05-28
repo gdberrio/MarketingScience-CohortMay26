@@ -40,15 +40,17 @@ mistakes that would make the analysis unsafe, misleading, or hard to reproduce.
 
 The May cohort already has the pieces needed for lightweight behavior evals:
 
-| Course asset | What it contributes |
-|---|---|
-| `agentic-workflow-layer.md` | Defines skills, artifacts, validation checklists, and behavior evals. |
-| `skills/course-examples/` | Gives small, inspectable skills for MMM variable mapping, Meridian setup, lift design, and calibration. |
-| `skills/skill-readiness-checklist.md` | Defines what a course-ready skill must include. |
-| `references/how-to-write-a-skill.md` | Shows how to turn repeated judgment into a skill and add one behavior eval. |
-| `artifacts/agent-output-validation-checklist.md` | Gives students a manual quality gate after agent-generated analysis. |
-| `labs/week-4/evals-and-calibration-lab.md` | Asks students to write an eval case for a skill. |
-| `evals/skills/mmm-variable-mapping/cases.yaml` | Provides a first YAML example of a behavior eval case. |
+
+| Course asset                                     | What it contributes                                                                                     |
+| ------------------------------------------------ | ------------------------------------------------------------------------------------------------------- |
+| `agentic-workflow-layer.md`                      | Defines skills, artifacts, validation checklists, and behavior evals.                                   |
+| `skills/course-examples/`                        | Gives small, inspectable skills for MMM variable mapping, Meridian setup, lift design, and calibration. |
+| `skills/skill-readiness-checklist.md`            | Defines what a course-ready skill must include.                                                         |
+| `references/how-to-write-a-skill.md`             | Shows how to turn repeated judgment into a skill and add one behavior eval.                             |
+| `artifacts/agent-output-validation-checklist.md` | Gives students a manual quality gate after agent-generated analysis.                                    |
+| `labs/week-4/evals-and-calibration-lab.md`       | Asks students to write an eval case for a skill.                                                        |
+| `evals/skills/mmm-variable-mapping/cases.yaml`   | Provides a first YAML example of a behavior eval case.                                                  |
+
 
 That foundation is strong. The missing piece is the eval mental model:
 
@@ -68,13 +70,15 @@ This reading fills that gap.
 Not every eval tests the same thing. Before writing a case, name the unit under
 test.
 
-| Level | Unit under test | Example question | Good scorers |
-|---|---|---|---|
-| Prompt eval | One prompt on one input | Does the prompt surface variable-role mistakes? | Regex checks, structured output checks, human review |
-| Skill eval | Skill plus prompt plus workspace | Does `mmm-variable-mapping` create the right role table and stop before modeling? | Artifact checks, schema checks, rubric checks |
-| Artifact eval | A durable output | Does the Calibration Handoff preserve estimand, uncertainty, time period, population, and transferability limits? | Required-section checks, forbidden-claim checks, human review |
-| Harness eval | Same task across agents or tools | Do Codex, Claude Code, and another harness reach comparable conclusions from the same prompt and files? | Paired pass/fail, trace review, artifact comparison |
-| Narrative eval | Final claim or teaching story | Does the recommendation match the evidence strength? | Human review, rubric judge, numeric tolerance checks |
+
+| Level          | Unit under test                  | Example question                                                                                                  | Good scorers                                                  |
+| -------------- | -------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
+| Prompt eval    | One prompt on one input          | Does the prompt surface variable-role mistakes?                                                                   | Regex checks, structured output checks, human review          |
+| Skill eval     | Skill plus prompt plus workspace | Does `mmm-variable-mapping` create the right role table and stop before modeling?                                 | Artifact checks, schema checks, rubric checks                 |
+| Artifact eval  | A durable output                 | Does the Calibration Handoff preserve estimand, uncertainty, time period, population, and transferability limits? | Required-section checks, forbidden-claim checks, human review |
+| Harness eval   | Same task across agents or tools | Do Codex, Claude Code, and another harness reach comparable conclusions from the same prompt and files?           | Paired pass/fail, trace review, artifact comparison           |
+| Narrative eval | Final claim or teaching story    | Does the recommendation match the evidence strength?                                                              | Human review, rubric judge, numeric tolerance checks          |
+
 
 For this course, most student evals should be skill or artifact evals. Those are
 close enough to the capstone work to be useful and small enough to write in an
@@ -202,15 +206,17 @@ the agent to preserve the caveats that prevent bad business decisions.
 
 Different claims need different scorers.
 
-| Claim type | Better scorer | Avoid |
-|---|---|---|
-| File exists | Deterministic file check | LLM judge |
-| YAML is valid | Parser/schema check | LLM judge |
-| Required artifact sections exist | Markdown heading or schema check | Free-form opinion |
-| Number is within tolerance | Numeric assertion | LLM judge |
-| Forbidden phrase or recommendation absent | Regex/string check plus review | Only asking the model |
-| Caveat is specific enough | Human review or calibrated LLM judge | Regex alone |
-| Recommendation matches evidence strength | Human review or rubric judge | Pure keyword checks |
+
+| Claim type                                | Better scorer                        | Avoid                 |
+| ----------------------------------------- | ------------------------------------ | --------------------- |
+| File exists                               | Deterministic file check             | LLM judge             |
+| YAML is valid                             | Parser/schema check                  | LLM judge             |
+| Required artifact sections exist          | Markdown heading or schema check     | Free-form opinion     |
+| Number is within tolerance                | Numeric assertion                    | LLM judge             |
+| Forbidden phrase or recommendation absent | Regex/string check plus review       | Only asking the model |
+| Caveat is specific enough                 | Human review or calibrated LLM judge | Regex alone           |
+| Recommendation matches evidence strength  | Human review or rubric judge         | Pure keyword checks   |
+
 
 Rule of thumb:
 
@@ -346,12 +352,14 @@ Before calculating anything, decide what one observation means.
 
 Common choices:
 
-| Unit | Example | Use when |
-|---|---|---|
-| Run | One agent attempt on one case | You care about stochastic flakiness. |
-| Case | One scenario, possibly with repeated runs | You care about coverage of distinct failure modes. |
-| Skill | A bundle of cases for one skill | You care whether a workflow asset is ready. |
-| Artifact | One produced Variable Map or Calibration Handoff | You care whether durable output meets a contract. |
+
+| Unit     | Example                                          | Use when                                           |
+| -------- | ------------------------------------------------ | -------------------------------------------------- |
+| Run      | One agent attempt on one case                    | You care about stochastic flakiness.               |
+| Case     | One scenario, possibly with repeated runs        | You care about coverage of distinct failure modes. |
+| Skill    | A bundle of cases for one skill                  | You care whether a workflow asset is ready.        |
+| Artifact | One produced Variable Map or Calibration Handoff | You care whether durable output meets a contract.  |
+
 
 Do not mix these up. Five reruns of one case are evidence about that case's
 stability. They are not the same as five different eval cases.
@@ -480,7 +488,7 @@ variance. An eval score varies for two reasons:
 
 1. Some cases are intrinsically easier or harder than others.
 2. The model or judge may produce different outputs on repeated runs of the
-   same case.
+  same case.
 
 In course language:
 
@@ -490,7 +498,7 @@ within-case variance: same prompt passes once, then omits uncertainty next run
 ```
 
 Adding more distinct cases reduces uncertainty about the broader skill.
-Repeating the same case reduces uncertainty about stochastic flakiness on that
+Repeatin**g the same case reduces u**ncertainty about stochastic flakiness on that
 case. Both are useful, but they answer different questions.
 
 If one case is important enough to rerun, score at the case level first:
@@ -524,12 +532,14 @@ cases and model B gets hard cases, the comparison is not meaningful.
 For binary pass/fail comparisons, the most informative rows are the
 disagreements:
 
-| Case result | Meaning |
-|---|---|
-| A passes, B passes | Both handled the case. |
-| A fails, B fails | The case is hard or the scorer is strict. |
-| A passes, B fails | Evidence in favor of A on this case. |
-| A fails, B passes | Evidence in favor of B on this case. |
+
+| Case result        | Meaning                                   |
+| ------------------ | ----------------------------------------- |
+| A passes, B passes | Both handled the case.                    |
+| A fails, B fails   | The case is hard or the scorer is strict. |
+| A passes, B fails  | Evidence in favor of A on this case.      |
+| A fails, B passes  | Evidence in favor of B on this case.      |
+
 
 With enough paired binary cases, McNemar's test is a standard option because it
 focuses on the discordant pairs. For small course evals, a table of discordant
@@ -646,12 +656,14 @@ trusting it.
 
 At minimum, build a small calibration set:
 
-| Output | Human label | Reason |
-|---|---|---|
-| A | Pass | Preserves interval and transferability caveat. |
-| B | Fail | Drops uncertainty. |
-| C | Fail | Recommends budget increase without diagnostics. |
-| D | Pass | Caveats are present, but concise. |
+
+| Output | Human label | Reason                                          |
+| ------ | ----------- | ----------------------------------------------- |
+| A      | Pass        | Preserves interval and transferability caveat.  |
+| B      | Fail        | Drops uncertainty.                              |
+| C      | Fail        | Recommends budget increase without diagnostics. |
+| D      | Pass        | Caveats are present, but concise.               |
+
 
 Then check:
 
@@ -669,12 +681,14 @@ not be used to grade causal caveats.
 
 The smaller the eval set, the narrower the claim should be.
 
-| Evidence | Reasonable claim | Overclaim |
-|---|---|---|
-| 1 passing run | This run passed. | The workflow is reliable. |
-| 3/3 targeted cases | The skill handled these known traps. | The skill has 100% accuracy. |
-| 20 varied cases with intervals | The skill appears stable on this eval set. | The agent is generally safe. |
-| Paired cases across two models | Model A did better on these cases. | Model A is universally better. |
+
+| Evidence                       | Reasonable claim                           | Overclaim                      |
+| ------------------------------ | ------------------------------------------ | ------------------------------ |
+| 1 passing run                  | This run passed.                           | The workflow is reliable.      |
+| 3/3 targeted cases             | The skill handled these known traps.       | The skill has 100% accuracy.   |
+| 20 varied cases with intervals | The skill appears stable on this eval set. | The agent is generally safe.   |
+| Paired cases across two models | Model A did better on these cases.         | Model A is universally better. |
+
 
 Good eval reporting sounds modest because the evidence is usually narrow.
 
@@ -771,16 +785,18 @@ review, or production monitoring.
 
 ### Tool Categories
 
-| Category | Examples | Best for | Weak fit for |
-|---|---|---|---|
-| Plain code checks | Python, `pytest`, YAML parsers | File existence, schemas, numeric tolerances, path rules, deterministic artifact checks | Subjective caveat quality |
-| Prompt and provider test matrices | [Promptfoo](https://www.promptfoo.dev/docs/configuration/expected-outputs/) | Prompt variants, model/provider comparisons, assertion suites, custom Python or JavaScript scorers | Long sandboxed agent tasks |
-| Formal eval frameworks | [Inspect AI](https://inspect.aisi.org.uk/), [OpenAI Evals](https://github.com/openai/evals) | Reusable datasets, solvers, scorers, model comparisons, more formal eval runs | One-off classroom checks |
-| Sandboxed agent benchmarks | [Inspect AI](https://inspect.aisi.org.uk/), [Harbor](https://www.harborframework.com/docs/run-jobs/run-evals) | Tool-using agents, coding agents, file-system tasks, containerized environments, trajectories | Simple text-only prompt checks |
+
+| Category                          | Examples                                                                                                                                                                                                                  | Best for                                                                                               | Weak fit for                                 |
+| --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ | -------------------------------------------- |
+| Plain code checks                 | Python, `pytest`, YAML parsers                                                                                                                                                                                            | File existence, schemas, numeric tolerances, path rules, deterministic artifact checks                 | Subjective caveat quality                    |
+| Prompt and provider test matrices | [Promptfoo](https://www.promptfoo.dev/docs/configuration/expected-outputs/)                                                                                                                                               | Prompt variants, model/provider comparisons, assertion suites, custom Python or JavaScript scorers     | Long sandboxed agent tasks                   |
+| Formal eval frameworks            | [Inspect AI](https://inspect.aisi.org.uk/), [OpenAI Evals](https://github.com/openai/evals)                                                                                                                               | Reusable datasets, solvers, scorers, model comparisons, more formal eval runs                          | One-off classroom checks                     |
+| Sandboxed agent benchmarks        | [Inspect AI](https://inspect.aisi.org.uk/), [Harbor](https://www.harborframework.com/docs/run-jobs/run-evals)                                                                                                             | Tool-using agents, coding agents, file-system tasks, containerized environments, trajectories          | Simple text-only prompt checks               |
 | Observability plus eval platforms | [Phoenix](https://arize.com/docs/phoenix), [Langfuse](https://langfuse.com/docs/evaluation/overview), [Braintrust](https://www.braintrust.dev/docs/evaluate), [Opik](https://www.comet.com/docs/opik/evaluation/overview) | Traces, datasets from real runs, experiments, human annotation, online monitoring, regression tracking | Tiny local evals with no app or trace stream |
-| Pytest-style LLM app evals | [DeepEval](https://deepeval.com/docs/introduction) | Unit-test-like LLM evals, metrics, agent/tool-use checks, RAG/chatbot workflows, CI | Benchmarking base model capability |
-| RAG and retrieval metrics | [Ragas](https://docs.ragas.io/en/latest/concepts/metrics/available_metrics/) | Context precision/recall, faithfulness, answer relevance, retrieval-heavy workflows | MMM workflows without retrieval |
-| Model benchmark harnesses | [lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness) | Standard academic benchmarks, base-model comparisons, reproducible leaderboard-style tasks | Course-specific artifact contracts |
+| Pytest-style LLM app evals        | [DeepEval](https://deepeval.com/docs/introduction)                                                                                                                                                                        | Unit-test-like LLM evals, metrics, agent/tool-use checks, RAG/chatbot workflows, CI                    | Benchmarking base model capability           |
+| RAG and retrieval metrics         | [Ragas](https://docs.ragas.io/en/latest/concepts/metrics/available_metrics/)                                                                                                                                              | Context precision/recall, faithfulness, answer relevance, retrieval-heavy workflows                    | MMM workflows without retrieval              |
+| Model benchmark harnesses         | [lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness)                                                                                                                                              | Standard academic benchmarks, base-model comparisons, reproducible leaderboard-style tasks             | Course-specific artifact contracts           |
+
 
 ### What To Use In This Course
 
@@ -791,7 +807,7 @@ Use this default stack for Week 4 and capstone work:
 3. Use human review for causal caveats and recommendation strength.
 4. Add an LLM judge only after you have a small human-labeled calibration set.
 5. Move to a framework only when the eval set becomes repetitive or needs CI,
-   provider comparison, traces, or sandboxing.
+  provider comparison, traces, or sandboxing.
 
 That means a strong capstone eval can be very simple:
 
@@ -893,9 +909,9 @@ By the end, you should be able to:
 
 1. Identify the severe failure a skill should prevent.
 2. Decide whether the eval is testing a prompt, skill, artifact, harness, or
-   final narrative claim.
+  final narrative claim.
 3. Write `expected` and `disallowed` behavior that a reviewer can actually
-   score.
+  score.
 4. Choose an appropriate scorer for each claim.
 5. Summarize eval results without making claims beyond the evidence.
 
@@ -947,25 +963,20 @@ calibration case; it only covers the wide-interval geo-lift failure mode.
 Avoid these when writing evals:
 
 1. **Testing generic helpfulness.**
-   A good course eval tests a specific analytical failure.
-
+  A good course eval tests a specific analytical failure.
 2. **Using an LLM judge for facts.**
-   Do not ask a judge whether a file exists or a number matches.
-
+  Do not ask a judge whether a file exists or a number matches.
 3. **Writing unscorable expectations.**
-   "Be thoughtful" is not observable. "Names the confidence interval and says
+  "Be thoughtful" is not observable. "Names the confidence interval and says
    it includes zero" is observable.
-
 4. **Overclaiming from small samples.**
-   Passing 3/3 targeted cases is useful. It is not proof of general reliability.
-
+  Passing 3/3 targeted cases is useful. It is not proof of general reliability.
 5. **Ignoring artifacts.**
-   If the workflow should produce a Variable Map, Model Spec, or Calibration
+  If the workflow should produce a Variable Map, Model Spec, or Calibration
    Handoff, the eval should check that the artifact exists and contains the
    required decisions.
-
 6. **Letting evals become stale.**
-   When a skill changes, the eval should be rerun. When a new severe failure is
+  When a skill changes, the eval should be rerun. When a new severe failure is
    discovered, add a case.
 
 ---
@@ -998,3 +1009,4 @@ An eval is a reusable question you ask of an agentic workflow:
 
 > Did the workflow preserve the specific judgment that would make the analysis
 > trustworthy?
+
